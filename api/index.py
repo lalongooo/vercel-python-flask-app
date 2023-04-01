@@ -43,6 +43,7 @@ def send_message():
     FIREBASE_SERVER_KEY = os.environ.get('FIREBASE_SERVER_KEY')
     print("Read ENV var")
     print(os.environ.get('FIREBASE_SERVER_KEY'))
+    print(os.environ)
     print("Finished reading ENV var")
     headers = {        
         'Authorization': f'key={FIREBASE_SERVER_KEY}',
