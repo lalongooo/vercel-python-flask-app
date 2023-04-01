@@ -39,12 +39,8 @@ def api():
 @app.route('/send_message', methods=['GET', 'POST'])
 def send_message():
     deviceToken = request.headers.get('Device-Token')
-    url = 'https://fcm.googleapis.com/fcm/send'
+    FIREBASE_FCM_SEND_URL = 'https://fcm.googleapis.com/fcm/send'
     FIREBASE_SERVER_KEY = os.environ.get('FIREBASE_SERVER_KEY')
-    print("Read ENV var")
-    print(os.environ.get('FIREBASE_SERVER_KEY'))
-    print(os.environ)
-    print("Finished reading ENV var")
     headers = {        
         'Authorization': f'key={FIREBASE_SERVER_KEY}',
         'Content-Type': 'application/json'
@@ -59,16 +55,12 @@ def send_message():
         }
     }
 
-    
-
     # Make HTTP request to the Firebase Messaging Service
-    firebaseResponse = requests.post(url, headers=headers, json=data)
+    firebaseResponse = requests.post(FIREBASE_FCM_SEND_URL, headers=headers, json=data)
 
     response = Response(
         response=firebaseResponse.content,
-        status=200,
-        mimetype="text/plain"
+        status=firebaseResponse.status_code,
+        mimetype="application/json"
     )
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers[os.getenv('FIREBASE_SERVER_KEY')] = FIREBASE_SERVER_KEY
     return response
