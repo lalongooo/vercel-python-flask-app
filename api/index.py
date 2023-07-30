@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flask import Response
+from flask import make_response
 import requests
 import uuid
 import os
@@ -36,12 +37,20 @@ def api():
         text = my_file.read()
         return text
 
-@app.route('/whatsapp', methods=['GET'])
+@app.route('/whatsapp', methods=['GET', 'POST'])
 def whatsapp():
     print("WhatsApp Webhook starting...")
     print(request.args)
     print("WhatsApp Webhook completed ✅")
-    return request.args.get("hub.challenge")
+    if request.args.get("hub.challenge"):
+        return request.args.get("hub.challenge")
+    else:
+        data = request.data
+        json_data = data.decode('utf-8')
+        print(json_data)        
+        response = make_response('')
+        response.status_code = 200
+        return response
 
 @app.route('/send_message', methods=['GET', 'POST'])
 def send_message():
