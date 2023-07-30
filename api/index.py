@@ -36,6 +36,12 @@ def api():
         text = my_file.read()
         return text
 
+@app.route('/whatsapp', methods=['GET'])
+def send_message():
+    print("WhatsApp Webhook starting...")
+    print(request.args)
+    print("WhatsApp Webhook completed ✅")
+
 @app.route('/send_message', methods=['GET', 'POST'])
 def send_message():
     deviceToken = request.headers.get('Device-Token')
