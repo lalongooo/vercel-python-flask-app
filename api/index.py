@@ -37,7 +37,7 @@ def api():
         return text
 
 @app.route('/whatsapp', methods=['GET'])
-def send_message():
+def whatsapp():
     print("WhatsApp Webhook starting...")
     print(request.args)
     print("WhatsApp Webhook completed ✅")
