@@ -107,7 +107,12 @@ def reply_with_interactive_message():
 
     response = requests.request("POST", url, headers=HEADERS, data=payload)
 
-    print(response.text)
+    response_json = response.json()
+    print(response_json)
+
+    response = make_response(response_json)
+    response.status_code = 200
+    return response
 
 def reply():
     url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
