@@ -116,18 +116,18 @@ def whatsapp():
         print(data_decoded)
 
         if Util.is_message(request):
-            return reply_with_interactive_message()
+            return reply_with_interactive_message(Util.get_author(request))
         else:
             response = make_response('')
             response.status_code = 200
             return response
 
-def reply_with_interactive_message():
+def reply_with_interactive_message(to_author):
     url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
 
     payload = json.dumps({
         "messaging_product": "whatsapp",
-        "to": "528116916048",
+        "to": to_author,
         "type": "interactive",
         "recipient_type": "individual",
         "interactive": {
