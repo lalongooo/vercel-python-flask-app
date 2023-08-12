@@ -1,7 +1,7 @@
 import json
 
-class Calculator:
-    
+class Util:
+
     @staticmethod
     def is_message(request) -> bool:
         json_data = json.loads(request.data)
