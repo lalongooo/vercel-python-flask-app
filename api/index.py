@@ -88,7 +88,7 @@ def reply_with_interactive_message():
                 "sections":[{
                     "title":"your-section-title-content",
                     "rows": [{
-                        "ID": "1",
+                        "id": "1",
                         "title": "row-title-content",
                         "description": "row-description-content",           
                     }]
@@ -96,7 +96,7 @@ def reply_with_interactive_message():
                 {
                     "title":"your-section-title-content",
                     "rows": [{
-                        "ID": "2",
+                        "id": "2",
                         "title": "row-title-content",
                         "description": "row-description-content",           
                     }]
