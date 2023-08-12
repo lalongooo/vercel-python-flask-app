@@ -1,0 +1,9 @@
+import os
+
+GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL = os.getenv("GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL")
+FIREBASE_SERVER_KEY = os.environ.get('FIREBASE_SERVER_KEY')
+WHATSAPP_API_TEMP_ACCESS_TOKEN = os.environ.get('WHATSAPP_API_TEMP_ACCESS_TOKEN')
+HEADERS = {
+    'Authorization': f'key={WHATSAPP_API_TEMP_ACCESS_TOKEN}',
+    "Content-Type": "application/json",
+}
