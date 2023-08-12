@@ -134,18 +134,15 @@ def reply_with_interactive_message():
             "type": "list",
             "header": {
                 "type": "text",
-                "text": "header text"
+                "text": "¡Hola! Muchas gracias por ponerte en contacto con nosotros."
             },
             "body": {
-                "text": "body text"
-            },
-            "footer": {
-                "text": "footer text"
-            },
+                "text": "Estamos encantados de ayudarte."
+            }
             "action": {
-                "button": "Select an option",
+                "button": "Selecciona una opción",
                 "sections":[{
-                    "title":"your-section-title-content",
+                    "title":"Contratar servicio",
                     "rows": [{
                         "id": "1",
                         "title": "row-title-content",
@@ -153,7 +150,7 @@ def reply_with_interactive_message():
                     }]
                 },
                 {
-                    "title":"your-section-title-content",
+                    "title":"Reportar una falla",
                     "rows": [{
                         "id": "2",
                         "title": "row-title-content",
