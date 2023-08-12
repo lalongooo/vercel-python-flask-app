@@ -68,20 +68,40 @@ def reply_with_interactive_message():
 
     payload = json.dumps({
         "messaging_product": "whatsapp",
-        "recipient_type": "individual",
         "to": "528116916048",
         "type": "interactive",
         "interactive": {
-            "type": "product",
+            "type": "list",
+            "header": {
+                "type": "text",
+                "text": "header text"
+            },
             "body": {
-                "text": "optional body text"
+                "text": "body text"
             },
             "footer": {
-                "text": "optional footer text"
+                "text": "footer text"
             },
             "action": {
-                "catalog_id": "CATALOG_ID",
-                "product_retailer_id": "ID_TEST_ITEM_1"
+                "button": "button content",
+                "sections":[{
+                    "title":"your-section-title-content",
+                    "rows": [
+                    {
+                        "id": "1",
+                        "title": "row-title-content",
+                        "description": "row-description-content",           
+                    }
+                    ]
+                },
+                {
+                    "title":"your-section-title-content",
+                    "rows": [{
+                        "id": "2",
+                        "title": "row-title-content",
+                        "description": "row-description-content",           
+                    }]
+                }]
             }
         }
     })
