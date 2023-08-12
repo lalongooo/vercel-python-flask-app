@@ -39,22 +39,11 @@ def api():
 
 @app.route('/whatsapp', methods=['GET', 'POST'])
 def whatsapp():
-    print("WhatsApp Webhook starting...")
-    print(request.args)
-    print("WhatsApp Webhook completed ✅")
     if request.args.get("hub.challenge"):
         return request.args.get("hub.challenge")
     else:
         json_data = json.loads(request.data)
         print("Message Data Received:")
-        
-        print("json_data:")
-        print(type(json_data))
-        print(json_data)
-        
-        print("request.data:")
-        print(type(request.data))
-        print(request.data)
 
         data_decoded = request.data.decode('utf-8')
         print("request.data.decode('utf-8')")
