@@ -45,10 +45,14 @@ def whatsapp():
     if request.args.get("hub.challenge"):
         return request.args.get("hub.challenge")
     else:
-        data = request.data
-        json_data = data.decode('utf-8')
+        json_data = json.loads(request.data)
         print("Message Data Received:")
+        print("json_data:")
         print(json_data)
+        print("request.data:")
+        print(request.data)
+
+        
         
         if json_data["object"] == "whatsapp_business_account":
 
