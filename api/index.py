@@ -6,7 +6,7 @@ import requests
 import uuid
 import os
 import json
-from utils import Util
+from utils.util import Util
 
 
 app = Flask(__name__)
@@ -51,7 +51,7 @@ def whatsapp():
         print(type(data_decoded))
         print(data_decoded)
 
-        if util.is_message(request):
+        if Util.is_message(request):
             return reply()
         else:
             response = make_response('')
