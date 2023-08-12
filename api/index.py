@@ -62,12 +62,13 @@ def whatsapp():
         print(data_decoded)
 
         if json_data["entry"]:
-            if json_data["entry"]["changes"]:
-                if json_data["entry"]["changes"][0]:
-                    if json_data["entry"]["changes"][0]["value"]:
-                        if json_data["entry"]["changes"][0]["value"]["messages"]:
-                            if json_data["entry"]["changes"][0]["value"]["messages"][0]:
-                                reply()
+            if json_data["entry"][0]:
+                if json_data["entry"][0]["changes"]:
+                    if json_data["entry"][0]["changes"][0]:
+                        if json_data["entry"][0]["changes"][0]["value"]:
+                            if json_data["entry"][0]["changes"][0]["value"]["messages"]:
+                                if json_data["entry"][0]["changes"][0]["value"]["messages"][0]:
+                                    reply()
         else:
             response = make_response('')
             response.status_code = 200
