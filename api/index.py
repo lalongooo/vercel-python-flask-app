@@ -141,22 +141,29 @@ def reply_with_interactive_message():
             },
             "action": {
                 "button": "Elige una opción",
-                "sections":[{
-                    "title":"Contratar servicio",
-                    "rows": [{
-                        "id": "1",
-                        "title": "row-title-content",
-                        "description": "row-description-content",           
-                    }]
-                },
-                {
-                    "title":"Reportar una falla",
-                    "rows": [{
-                        "id": "2",
-                        "title": "row-title-content",
-                        "description": "row-description-content",           
-                    }]
-                }]
+                "sections":
+                [
+                    {
+                        "rows":
+                        [
+                            {
+                                "id": "1",
+                                "title": "Contratar servicio",
+                                "description": "Conoce los detalles para contratar internet en tu domicilio"
+                            },
+                            {
+                                "id": "2",
+                                "title": "Reportar una falla",
+                                "description": "Lamentamos que esto haya sucedido. Selecciona para levantar un reporte"
+                            },
+                            {
+                                "id": "3",
+                                "title": "Precios de paquetes",
+                                "description": "Información relacionada a precios de paquetes de internet en tu casa"
+                            }
+                        ]
+                    }
+                ]
             }
         }
     })
