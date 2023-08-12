@@ -70,6 +70,7 @@ def reply_with_interactive_message():
         "messaging_product": "whatsapp",
         "to": "528116916048",
         "type": "interactive",
+        "recipient_type": "individual",
         "interactive": {
             "type": "list",
             "header": {
@@ -83,21 +84,19 @@ def reply_with_interactive_message():
                 "text": "footer text"
             },
             "action": {
-                "button": "button content",
+                "button": "Select an option",
                 "sections":[{
                     "title":"your-section-title-content",
-                    "rows": [
-                    {
-                        "id": "1",
+                    "rows": [{
+                        "ID": "1",
                         "title": "row-title-content",
                         "description": "row-description-content",           
-                    }
-                    ]
+                    }]
                 },
                 {
                     "title":"your-section-title-content",
                     "rows": [{
-                        "id": "2",
+                        "ID": "2",
                         "title": "row-title-content",
                         "description": "row-description-content",           
                     }]
