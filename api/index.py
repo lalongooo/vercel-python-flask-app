@@ -7,6 +7,11 @@ import uuid
 import os
 import json
 from utils.util import Util
+from utils.constants import (
+    GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL,
+    HEADERS,
+    WHATSAPP_API_TEMP_ACCESS_TOKEN,
+)
 
 
 app = Flask(__name__)
@@ -52,14 +57,41 @@ def whatsapp():
         print(data_decoded)
 
         if Util.is_message(request):
-            return reply()
+            return reply_with_interactive_message()
         else:
             response = make_response('')
             response.status_code = 200
             return response
 
+def reply_with_interactive_message():
+    url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
+
+    payload = json.dumps({
+        "messaging_product": "whatsapp",
+        "recipient_type": "individual",
+        "to": "528116916048",
+        "type": "interactive",
+        "interactive": {
+            "type": "product",
+            "body": {
+                "text": "optional body text"
+            },
+            "footer": {
+                "text": "optional footer text"
+            },
+            "action": {
+                "catalog_id": "CATALOG_ID",
+                "product_retailer_id": "ID_TEST_ITEM_1"
+            }
+        }
+    })
+
+    response = requests.request("POST", url, headers=HEADERS, data=payload)
+
+    print(response.text)
+
 def reply():
-    url = "https://graph.facebook.com/v17.0/116111058231877/messages"
+    url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
     payload = json.dumps({
         "messaging_product": "whatsapp",
         "to": "528116916048",
@@ -67,13 +99,8 @@ def reply():
             "body": "This is a sample message sent by the Flask app hosted on Vercel"
         }
     })
-    WHATSAPP_API_TEMP_ACCESS_TOKEN = os.environ.get('WHATSAPP_API_TEMP_ACCESS_TOKEN')
-    headers = {
-        'Authorization': f'Bearer {WHATSAPP_API_TEMP_ACCESS_TOKEN}',
-        'Content-Type': 'application/json'
-    }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = requests.request("POST", url, headers=HEADERS, data=payload)
     
     response_json = response.json()
     print(response_json)
