@@ -61,39 +61,41 @@ def whatsapp():
         print(type(data_decoded))
         print(data_decoded)
 
-        
-        response = make_response('')
-        response.status_code = 200
-        return response
-        # if json_data["object"] == "whatsapp_business_account":
+        if json_data["entry"]:
+            if json_data["entry"]["changes"]:
+                if json_data["entry"]["changes"][0]:
+                    if json_data["entry"]["changes"][0]["value"]:
+                        if json_data["entry"]["changes"][0]["value"]["messages"]:
+                            if json_data["entry"]["changes"][0]["value"]["messages"][0]:
+                                reply()
+        else:
+            response = make_response('')
+            response.status_code = 200
+            return response
 
-        #     url = "https://graph.facebook.com/v17.0/116111058231877/messages"
+def reply():
+    url = "https://graph.facebook.com/v17.0/116111058231877/messages"
+    payload = json.dumps({
+        "messaging_product": "whatsapp",
+        "to": "528116916048",
+        "text": {
+            "body": "This is a sample message sent by the Flask app hosted on Vercel"
+        }
+    })
+    WHATSAPP_API_TEMP_ACCESS_TOKEN = os.environ.get('WHATSAPP_API_TEMP_ACCESS_TOKEN')
+    headers = {
+        'Authorization': f'Bearer {WHATSAPP_API_TEMP_ACCESS_TOKEN}',
+        'Content-Type': 'application/json'
+    }
 
-        #     payload = json.dumps({
-        #         "messaging_product": "whatsapp",
-        #         "to": "528116916048",
-        #         "text": {
-        #             "body": "This is a sample message sent by the Flask app hosted on Vercel"
-        #         }
-        #     })
-        #     WHATSAPP_API_TEMP_ACCESS_TOKEN = os.environ.get('WHATSAPP_API_TEMP_ACCESS_TOKEN')
-        #     headers = {
-        #         'Authorization': f'Bearer {WHATSAPP_API_TEMP_ACCESS_TOKEN}',
-        #         'Content-Type': 'application/json'
-        #     }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    
+    response_json = response.json()
+    print(response_json)
 
-        #     response = requests.request("POST", url, headers=headers, data=payload)
-            
-        #     response_json = response.json()
-        #     print(response_json)
-
-        #     response = make_response(response_json)
-        #     response.status_code = 200
-        #     return response
-        # else:
-        #     response = make_response('')
-        #     response.status_code = 200
-        #     return response
+    response = make_response(response_json)
+    response.status_code = 200
+    return response
 
 @app.route('/send_message', methods=['GET', 'POST'])
 def send_message():
