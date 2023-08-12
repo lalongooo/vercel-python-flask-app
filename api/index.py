@@ -127,7 +127,7 @@ def reply_with_interactive_message():
 
     payload = json.dumps({
         "messaging_product": "whatsapp",
-        "to": "5218116916048",
+        "to": "528116916048",
         "type": "interactive",
         "recipient_type": "individual",
         "interactive": {
