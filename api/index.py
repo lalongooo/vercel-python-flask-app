@@ -36,6 +36,65 @@ def portfolio():
 def contact():
     return 'Contact Page Route'
 
+@app.route('/privacy')
+def privacy():
+    return '''
+Effective Date: Aug 12th 2023
+
+This Privacy Policy explains how Fivra ("we," "us," or "our") collects, uses, and protects the personal information of our customers ("users" or "you"). We are committed to safeguarding your privacy and ensuring the security of the information you provide to us. By using our internet services, you agree to the terms outlined in this Privacy Policy.
+
+1. Information We Collect
+
+We only collect the minimal amount of information necessary to provide and manage our internet services. This information may include:
+
+Contact Information: Name, email address, and phone number.
+Service Information: Account details, service plans, and billing information.
+Technical Information: IP address, device information, browser type, and operating system.
+Usage Data: Data about your usage of our internet services, such as bandwidth usage, connection logs, and session duration.
+2. Use of Information
+
+We use the collected information solely for the purpose of providing, maintaining, and improving our internet services. Specifically, we may use your information for:
+
+Notifying you about the status of your internet service, including updates, maintenance, and outages.
+Delivering important information about your account, billing, and service plans.
+Analyzing usage patterns to optimize network performance and quality of service.
+Resolving technical issues and responding to your inquiries.
+Complying with legal and regulatory requirements.
+3. Information Sharing
+
+We do not sell, rent, or lease your personal information to third parties. However, we may share your information with:
+
+Service Providers: We may share data with trusted third-party service providers who assist us in delivering our services (e.g., customer support, billing, technical support).
+
+Legal Requirements: We may disclose information if required by law, subpoena, court order, or government request.
+
+Business Transfers: In the event of a merger, acquisition, or sale of all or a portion of our assets, your information may be transferred to the acquiring entity.
+
+4. Data Security
+
+We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, alteration, or destruction. While we strive to ensure the security of your data, no method of transmission over the internet or electronic storage is completely secure. We cannot guarantee absolute security.
+
+5. Your Choices
+
+You have the right to:
+
+Access and Update: Access, correct, or update your personal information by contacting us.
+Opt-Out: You can opt-out of receiving non-essential communications from us.
+6. Children's Privacy
+
+Our services are not intended for children under the age of 13. We do not knowingly collect or maintain information from individuals under 13 years of age.
+
+7. Changes to this Privacy Policy
+
+We may update this Privacy Policy from time to time. Any changes will be posted on our website, and the revised policy will be effective upon posting.
+
+8. Contact Us
+
+If you have any questions or concerns about our Privacy Policy or the use of your personal information, please contact us at [contact email/phone number].
+
+By using our services, you acknowledge that you have read, understood, and agree to this Privacy Policy.    
+    '''
+
 
 @app.route('/api')
 def api():
