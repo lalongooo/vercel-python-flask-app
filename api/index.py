@@ -56,10 +56,13 @@ def whatsapp():
         payload = json.dumps({
             "messaging_product": "whatsapp",
             "to": "528116916048",
-            "text": "This is a sample message sent by the Flask app hosted on Vercel",
+            "text": {
+                "body": "This is a sample message sent by the Flask app hosted on Vercel"
+            }
         })
+        WHATSAPP_API_TEMP_ACCESS_TOKEN = os.environ.get('WHATSAPP_API_TEMP_ACCESS_TOKEN')
         headers = {
-            'Authorization': 'Bearer EAANMCZA2KCtsBOyBWtoZAduVZAKZBlnxSeApeBxX7OkuMCf3INdCRz3uF2EOmfURtxLC0oMb1if2l4FC3is1AQThlXdyq0eBmVHVrjpi7Qnzji8qjFRpypfjCHvQYQobmFZAayCuv4VazGgMQpFFnH5MtPJyHvmVu8CsmxZCndMIE51aFyy2P8ZBH3ZCdLfIXmn9rhHknStazfyXq747ngZDZD',
+            'Authorization': f'Bearer {WHATSAPP_API_TEMP_ACCESS_TOKEN}',
             'Content-Type': 'application/json'
         }
 
