@@ -47,9 +47,31 @@ def whatsapp():
     else:
         data = request.data
         json_data = data.decode('utf-8')
-        print(json_data)        
-        response = make_response('')
+        print("Message Data Received:")
+        print(json_data)
+        
+
+        url = "https://graph.facebook.com/v17.0/116111058231877/messages"
+
+        payload = json.dumps({
+            "messaging_product": "whatsapp",
+            "to": "528116916048",
+            "text": "This is a sample message sent by the Flask app hosted on Vercel",
+        })
+        headers = {
+            'Authorization': 'Bearer EAANMCZA2KCtsBOyBWtoZAduVZAKZBlnxSeApeBxX7OkuMCf3INdCRz3uF2EOmfURtxLC0oMb1if2l4FC3is1AQThlXdyq0eBmVHVrjpi7Qnzji8qjFRpypfjCHvQYQobmFZAayCuv4VazGgMQpFFnH5MtPJyHvmVu8CsmxZCndMIE51aFyy2P8ZBH3ZCdLfIXmn9rhHknStazfyXq747ngZDZD',
+            'Content-Type': 'application/json'
+        }
+
+        response = requests.request("POST", url, headers=headers, data=payload)
+        
+        response_json = response.json()
+        print(response_json)
+
+        response = make_response(response_json)
         response.status_code = 200
+
+        
         return response
 
 @app.route('/send_message', methods=['GET', 'POST'])
