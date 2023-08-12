@@ -6,6 +6,7 @@ import requests
 import uuid
 import os
 import json
+from utils import static 
 
 
 app = Flask(__name__)
@@ -50,17 +51,8 @@ def whatsapp():
         print(type(data_decoded))
         print(data_decoded)
 
-        if "entry" in json_data:
-            if len(json_data["entry"]) > 0:
-                if "changes" in json_data["entry"][0]:
-                    if len(json_data["entry"][0]["changes"]) > 0:
-                        if "value" in json_data["entry"][0]["changes"][0]:
-                            if "messages" in json_data["entry"][0]["changes"][0]["value"]:
-                                return reply()
-                            else:
-                                response = make_response('')
-                                response.status_code = 200
-                                return response
+        if static.isMessage(request):
+            return reply()
         else:
             response = make_response('')
             response.status_code = 200
