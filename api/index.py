@@ -140,7 +140,7 @@ def reply_with_interactive_message():
                 "text": "Estamos encantados de ayudarte."
             },
             "action": {
-                "button": "Selecciona una opción",
+                "button": "Elige una opción",
                 "sections":[{
                     "title":"Contratar servicio",
                     "rows": [{
