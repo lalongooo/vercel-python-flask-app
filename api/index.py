@@ -138,7 +138,7 @@ def reply_with_interactive_message():
             },
             "body": {
                 "text": "Estamos encantados de ayudarte."
-            }
+            },
             "action": {
                 "button": "Selecciona una opción",
                 "sections":[{
