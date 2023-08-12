@@ -51,7 +51,7 @@ def whatsapp():
         print(type(data_decoded))
         print(data_decoded)
 
-        if static.isMessage(request):
+        if static.is_message(request):
             return reply()
         else:
             response = make_response('')
