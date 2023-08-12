@@ -47,9 +47,13 @@ def whatsapp():
     else:
         json_data = json.loads(request.data)
         print("Message Data Received:")
+        
         print("json_data:")
+        print(type(json_data))
         print(json_data)
+        
         print("request.data:")
+        print(type(request.data))
         print(request.data)
 
         
