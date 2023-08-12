@@ -57,6 +57,10 @@ def whatsapp():
                         if "value" in json_data["entry"][0]["changes"][0]:
                             if "messages" in json_data["entry"][0]["changes"][0]["value"]:
                                 return reply()
+                            else:
+                                response = make_response('')
+                                response.status_code = 200
+                                return response
         else:
             response = make_response('')
             response.status_code = 200
