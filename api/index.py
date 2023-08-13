@@ -116,15 +116,19 @@ def whatsapp():
         print(data_decoded)
 
         if Util.is_message(request):
+            print("it is message")
             author = Util.get_author(request)
             if Util.is_interactive_list_reply(request):
+                print("it is interactive reply")
                 # return handle_interactive_list_reply(request)
                 response = make_response('it is an interactive reply')
                 response.status_code = 200
                 return response
             else:
+                print("it is NOT interactive reply")
                 return reply_with_interactive_message(author)
         else:
+            print("it is not a valid message")
             response = make_response('')
             response.status_code = 200
             return response
