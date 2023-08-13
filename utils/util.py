@@ -14,6 +14,6 @@ class Util:
     def get_author(request) -> str:
         try:
             json_data = json.loads(request.data)
-            return json_data["entry"][0]["changes"][0]["value"]["metadata"]["phone_number_id"]
+            return json_data["entry"][0]["changes"][0]["value"]["metadata"][0]["from"]
         except Exception:
             return None
