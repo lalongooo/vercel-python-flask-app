@@ -22,7 +22,7 @@ class Util:
     def is_interactive_list_reply(request) -> bool:
         try:
             json_data = json.loads(request.data)
-            if (json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]["type"] == "list_reply"):
+            if json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]["type"] == "list_reply":
                 return True
             return False
         except Exception:
