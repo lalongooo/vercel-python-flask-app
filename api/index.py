@@ -116,7 +116,10 @@ def whatsapp():
         print(data_decoded)
 
         if Util.is_message(request):
-            return reply_with_interactive_message(Util.get_author(request))
+            author = Util.get_author(request)
+            print("printing author:")
+            print(author)
+            return reply_with_interactive_message(author)
         else:
             response = make_response('')
             response.status_code = 200
