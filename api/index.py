@@ -116,33 +116,44 @@ def whatsapp():
         print(data_decoded)
 
         if Util.is_message(request):
-            print("it is message")
-            author = Util.get_author(request)
             if Util.is_interactive_list_reply(request):
                 print("it is interactive reply")
                 return handle_interactive_list_reply(request)
-                # response = make_response('Response: it is an interactive reply')
-                # response.status_code = 200
-                # return response
             else:
                 print("it is NOT interactive reply")
-                return reply_with_interactive_message(author)
+                return reply_with_interactive_message(request)
         else:
             print("it is not a valid message")
             response = make_response('')
             response.status_code = 200
             return response
 
+
+{
+    "type": "list_reply",
+    "list_reply":
+    {
+        "id": "1",
+        "title": "Contratar servicio",
+        "description": "Conoce los detalles para contratar internet en tu domicilio"
+    }
+}
+
 def handle_interactive_list_reply(request):
-    reply_content = Util.get_interactive_reply(request)
-    print(reply_content)
-    response = make_response(reply_content)
-    response.status_code = 200
-    return response
+    reply_data = Util.get_reply_content(request)
+    print(reply_data)
+    if reply_data == "1":
+        return reply(request, "Comenzaremos tu proceso de contratación...")
+    elif reply_data == "2":
+        return reply(request, "Nuestro servicio nunca falla. No mientas.")
+    elif reply_data == "3":
+        return reply(request, "Cobramos un chingo de dinero 🤑")
+    else:
+        return reply_with_interactive_message(request)
 
-def reply_with_interactive_message(to_author):
+def reply_with_interactive_message(request):
     url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
-
+    to_author = Util.get_author(request)
     payload = json.dumps({
         "messaging_product": "whatsapp",
         "to": to_author,
@@ -195,21 +206,20 @@ def reply_with_interactive_message(to_author):
     response.status_code = 200
     return response
 
-def reply():
+def reply(request, reply_message):
     url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
+    to_author = Util.get_author(request)
     payload = json.dumps({
         "messaging_product": "whatsapp",
-        "to": "528116916048",
+        "to": to_author,
         "text": {
-            "body": "This is a sample message sent by the Flask app hosted on Vercel"
+            "body": reply_message
         }
     })
 
     response = requests.request("POST", url, headers=HEADERS, data=payload)
-    
     response_json = response.json()
     print(response_json)
-
     response = make_response(response_json)
     response.status_code = 200
     return response

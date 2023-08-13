@@ -35,3 +35,11 @@ class Util:
             return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
         except Exception:
             return None
+    
+    @staticmethod
+    def get_reply_content(request) -> str:
+        try:
+            json_data = json.loads(request.data)
+            return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]["list_reply"]["id"]
+        except Exception:
+            return None
