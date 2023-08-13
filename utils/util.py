@@ -29,7 +29,7 @@ class Util:
             return False
 
     @staticmethod
-    def get_interactive_reply(request) -> str | None:
+    def get_interactive_reply(request) -> str:
         try:
             json_data = json.loads(request.data)
             return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
