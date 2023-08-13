@@ -31,7 +31,8 @@ class Util:
     @staticmethod
     def get_interactive_reply(request) -> str | None:
         try:
-            json_data = json.loads(request.data)
-            return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
+            return "foo"
+            # json_data = json.loads(request.data)
+            # return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
         except Exception:
             return None
