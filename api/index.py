@@ -117,13 +117,20 @@ def whatsapp():
 
         if Util.is_message(request):
             author = Util.get_author(request)
-            print("printing author:")
-            print(author)
-            return reply_with_interactive_message(author)
+            if Util.is_interactive_list_reply(request):
+                return handle_interactive_list_reply(request)
+            else:
+                return reply_with_interactive_message(author)
         else:
             response = make_response('')
             response.status_code = 200
             return response
+def handle_interactive_list_reply(request):
+    reply_content = Util.get_interactive_reply(request)
+    print(reply_content)
+    response = make_response(reply_content)
+    response.status_code = 200
+    return response
 
 def reply_with_interactive_message(to_author):
     url = GRAPH_FACEBOOK_WHATSAPP_MESSAGES_URL
