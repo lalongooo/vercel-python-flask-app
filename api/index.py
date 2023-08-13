@@ -117,9 +117,7 @@ def whatsapp():
 
         if Util.is_message(request):
             author = Util.get_author(request)
-            print("printing author:")
-            print(author)
-            return reply_with_interactive_message("523330068853")
+            return reply_with_interactive_message(author)
         else:
             response = make_response('')
             response.status_code = 200
