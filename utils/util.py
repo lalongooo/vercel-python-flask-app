@@ -28,11 +28,10 @@ class Util:
         except Exception:
             return False
 
-    # @staticmethod
-    # def get_interactive_reply(request) -> str | None:
-    #     try:
-    #         return "foo"
-            # json_data = json.loads(request.data)
-            # return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
-        # except Exception:
-        #     return None
+    @staticmethod
+    def get_interactive_reply(request) -> str | None:
+        try:
+            json_data = json.loads(request.data)
+            return json_data["entry"][0]["changes"][0]["value"]["messages"][0]["interactive"]
+        except Exception:
+            return None
