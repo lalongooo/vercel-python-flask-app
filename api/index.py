@@ -134,9 +134,9 @@ def whatsapp():
             return response
 
 def handle_interactive_list_reply(request):
-    reply_content = Util.get_interactive_reply(request)
-    print(reply_content)
-    response = make_response(reply_content)
+    # reply_content = Util.get_interactive_reply(request)
+    # print(reply_content)
+    response = make_response("reply_content")
     response.status_code = 200
     return response
 
